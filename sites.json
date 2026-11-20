@@ -1,0 +1,61 @@
+{
+  "owner": "doridori0150",
+  "sites": [
+    {
+      "name": "nihongo",
+      "title": "にほんご Daily",
+      "description": "N2+ 일본어 학습 웹앱 — 오늘의 단어·문법·문장, 간격 복습, Claude AI 회화",
+      "url": "https://doridori0150.github.io/nihongo/",
+      "repo": "https://github.com/doridori0150/nihongo",
+      "language": "TypeScript",
+      "pushed_at": "2026-11-20T05:37:02Z",
+      "thumb": "thumbs/nihongo.webp",
+      "thumb_at": "2026-11-20T05:42:28+00:00"
+    },
+    {
+      "name": "market-radar",
+      "title": "마켓 레이더",
+      "description": "주간 마켓 레이더 — 국내/해외 주식시장 주간 정리 (자동 발행)",
+      "url": "https://doridori0150.github.io/market-radar/",
+      "repo": "https://github.com/doridori0150/market-radar",
+      "language": "CSS",
+      "pushed_at": "2026-11-19T20:05:16Z",
+      "thumb": "thumbs/market-radar.webp",
+      "thumb_at": "2026-11-20T05:42:28+00:00"
+    },
+    {
+      "name": "ff14-battle-notes",
+      "title": "FF14 전투수첩",
+      "description": "FF14 전투수첩 — 한국판 7.58 직업·임무 공략 (비영리 팬 사이트)",
+      "url": "https://doridori0150.github.io/ff14-battle-notes/",
+      "repo": "https://github.com/doridori0150/ff14-battle-notes",
+      "language": "JavaScript",
+      "pushed_at": "2026-11-16T08:17:48Z",
+      "thumb": "thumbs/ff14-battle-notes.webp",
+      "thumb_at": "2026-11-20T05:42:28+00:00"
+    },
+    {
+      "name": "MiniMidgard",
+      "title": "미니 미드가르",
+      "description": "라그나로크 감성의 싱글 방치형 RPG (Mini Midgard)",
+      "url": "https://doridori0150.github.io/MiniMidgard/",
+      "repo": "https://github.com/doridori0150/MiniMidgard",
+      "language": "TypeScript",
+      "pushed_at": "2026-11-14T09:35:33Z",
+      "thumb": "thumbs/MiniMidgard.webp",
+      "thumb_at": "2026-11-20T05:42:28+00:00"
+    },
+    {
+      "name": "tubequeue",
+      "title": "TubeQueue",
+      "description": "YouTube·YouTube Music 재생목록을 대기열로 만들어 재생하는 웹 플레이어",
+      "url": "https://doridori0150.github.io/tubequeue/",
+      "repo": "https://github.com/doridori0150/tubequeue",
+      "language": "HTML",
+      "pushed_at": "2026-10-05T02:08:18Z",
+      "thumb": "thumbs/tubequeue.webp",
+      "thumb_at": "2026-11-20T05:42:28+00:00"
+    }
+  ],
+  "updated_at": "2026-11-20T05:42:28+00:00"
+}

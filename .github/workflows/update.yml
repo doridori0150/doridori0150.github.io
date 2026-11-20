@@ -1,0 +1,76 @@
+# 공개 Pages 사이트 목록·썸네일을 갱신하고 이 페이지를 배포한다.
+# 6시간마다 자동 실행. 바로 반영하려면 Actions 탭 → "Update and deploy" → Run workflow.
+name: Update and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: "썸네일 전부 다시 캡처"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REFRESH: ${{ inputs.refresh && '1' || '0' }}
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Pillow
+        run: pip install --quiet pillow
+
+      - name: Check whether thumbnails need capturing
+        id: check
+        run: python scripts/update.py --check
+
+      - name: Install Korean/Japanese fonts for screenshots
+        if: steps.check.outputs.need_capture == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-color-emoji
+
+      - name: Update site list and thumbnails
+        run: python scripts/update.py
+
+      - name: Commit changes
+        run: |
+          git add -A sites.json thumbs
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update site list"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

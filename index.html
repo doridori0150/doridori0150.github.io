@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>doridori0150 · 만든 것들</title>
+<meta name="description" content="doridori0150 이 만든 웹앱·게임·사이트 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6b6b70;
+    --line: #e6e4df;
+    --accent: #d9603b;
+    --chip: #f0eeea;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.06), 0 16px 40px rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --card: #1b1b1f;
+      --text: #ececee;
+      --muted: #9a9aa2;
+      --line: #2a2a30;
+      --accent: #f08a62;
+      --chip: #26262c;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.3);
+      --shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.5);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 56px 24px 72px; }
+  header { margin-bottom: 40px; }
+  .eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; }
+  h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin: 0 0 10px; font-weight: 700; letter-spacing: -.02em; }
+  .lead { color: var(--muted); margin: 0; font-size: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card {
+    position: relative;
+    display: flex; flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .thumb { aspect-ratio: 16 / 10; background: var(--chip); overflow: hidden; border-bottom: 1px solid var(--line); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform .35s ease; }
+  .card:hover .thumb img { transform: scale(1.03); }
+  .thumb.fallback { display: grid; place-items: center; font-size: 44px; font-weight: 700; color: #fff; }
+  .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .title { font-size: 18px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  .title a { color: inherit; text-decoration: none; }
+  .title a::after { content: ""; position: absolute; inset: 0; } /* 카드 전체 클릭 */
+  .desc { color: var(--muted); font-size: 14px; margin: 0; flex: 1; }
+  .meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .chip { background: var(--chip); padding: 3px 9px; border-radius: 999px; font-weight: 500; }
+  .src { position: relative; z-index: 1; margin-left: auto; color: var(--muted); text-decoration: none; padding: 2px 0; }
+  .src:hover { color: var(--accent); }
+  .title a:focus-visible { outline: none; }
+  .card:has(.title a:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .state { color: var(--muted); padding: 48px 0; text-align: center; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 12px; text-align: center; }
+  @media (max-width: 640px) {
+    .wrap { padding: 36px 16px 56px; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card, .thumb img { transition: none; }
+    .card:hover, .card:hover .thumb img { transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">doridori0150</p>
+    <h1>만든 것들</h1>
+    <p class="lead">직접 만든 웹앱·게임·사이트 모음입니다. 카드를 누르면 바로 열립니다.</p>
+  </header>
+  <main id="grid" class="grid" aria-live="polite"><p class="state">불러오는 중…</p></main>
+  <footer id="foot"></footer>
+</div>
+<script>
+  const LANG_COLORS = { TypeScript: "#3178c6", JavaScript: "#d4b400", HTML: "#e34c26", CSS: "#663399", Python: "#3572a5" };
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const hue = (s) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
+  const fmtDate = (iso) => {
+    if (!iso) return "";
+    const d = new Date(iso);
+    const days = Math.floor((Date.now() - d) / 86400000);
+    if (days < 1) return "오늘 업데이트";
+    if (days < 30) return `${days}일 전 업데이트`;
+    return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()} 업데이트`;
+  };
+
+  function card(s) {
+    const h = hue(s.name);
+    const thumb = s.thumb
+      ? `<div class="thumb"><img src="${esc(s.thumb)}?v=${encodeURIComponent(s.thumb_at || "")}" alt="${esc(s.title)} 화면" loading="lazy" width="640" height="400"></div>`
+      : `<div class="thumb fallback" style="background:linear-gradient(135deg,hsl(${h} 60% 55%),hsl(${(h + 40) % 360} 60% 40%))">${esc(s.title.slice(0, 1))}</div>`;
+    const lang = s.language
+      ? `<span class="chip"><span style="color:${LANG_COLORS[s.language] || "var(--muted)"}">●</span> ${esc(s.language)}</span>`
+      : "";
+    return `<article class="card">
+      ${thumb}
+      <div class="body">
+        <h2 class="title"><a href="${esc(s.url)}">${esc(s.title)}</a></h2>
+        <p class="desc">${esc(s.description)}</p>
+        <div class="meta">${lang}<span>${fmtDate(s.pushed_at)}</span><a class="src" href="${esc(s.repo)}">소스 ↗</a></div>
+      </div>
+    </article>`;
+  }
+
+  fetch("sites.json", { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((data) => {
+      const grid = document.getElementById("grid");
+      grid.innerHTML = data.sites.length ? data.sites.map(card).join("") : '<p class="state">아직 공개된 사이트가 없습니다.</p>';
+      if (data.updated_at) {
+        const d = new Date(data.updated_at);
+        document.getElementById("foot").textContent = `목록 자동 갱신 · 마지막 ${d.toLocaleString("ko-KR")}`;
+      }
+    })
+    .catch(() => { document.getElementById("grid").innerHTML = '<p class="state">목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>'; });
+</script>
+</body>
+</html>
