@@ -2,6 +2,17 @@
   "owner": "doridori0150",
   "sites": [
     {
+      "name": "market-radar",
+      "title": "마켓 레이더",
+      "description": "주간 마켓 레이더 — 국내/해외 주식시장 주간 정리 (자동 발행)",
+      "url": "https://doridori0150.github.io/market-radar/",
+      "repo": "https://github.com/doridori0150/market-radar",
+      "language": "HTML",
+      "pushed_at": "2026-11-20T14:56:02Z",
+      "thumb": "thumbs/market-radar.webp",
+      "thumb_at": "2026-11-20T05:46:14+00:00"
+    },
+    {
       "name": "nihongo",
       "title": "にほんご Daily",
       "description": "N2+ 일본어 학습 웹앱 — 오늘의 단어·문법·문장, 간격 복습, Claude AI 회화",
@@ -10,17 +21,6 @@
       "language": "TypeScript",
       "pushed_at": "2026-11-20T05:37:02Z",
       "thumb": "thumbs/nihongo.webp",
-      "thumb_at": "2026-11-20T05:46:14+00:00"
-    },
-    {
-      "name": "market-radar",
-      "title": "마켓 레이더",
-      "description": "주간 마켓 레이더 — 국내/해외 주식시장 주간 정리 (자동 발행)",
-      "url": "https://doridori0150.github.io/market-radar/",
-      "repo": "https://github.com/doridori0150/market-radar",
-      "language": "CSS",
-      "pushed_at": "2026-11-19T20:05:16Z",
-      "thumb": "thumbs/market-radar.webp",
       "thumb_at": "2026-11-20T05:46:14+00:00"
     },
     {
@@ -57,5 +57,5 @@
       "thumb_at": "2026-11-20T05:46:14+00:00"
     }
   ],
-  "updated_at": "2026-11-20T05:46:14+00:00"
+  "updated_at": "2026-11-20T15:30:15+00:00"
 }
