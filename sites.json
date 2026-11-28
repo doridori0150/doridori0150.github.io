@@ -2,6 +2,17 @@
   "owner": "doridori0150",
   "sites": [
     {
+      "name": "market-radar",
+      "title": "마켓 레이더",
+      "description": "주간 마켓 레이더 — 국내/해외 주식시장 주간 정리 (자동 발행)",
+      "url": "https://doridori0150.github.io/market-radar/",
+      "repo": "https://github.com/doridori0150/market-radar",
+      "language": "HTML",
+      "pushed_at": "2026-11-27T23:13:04Z",
+      "thumb": "thumbs/market-radar.webp",
+      "thumb_at": "2026-11-27T08:39:55+00:00"
+    },
+    {
       "name": "LuckyWeek",
       "title": "럭키 위크",
       "description": "럭키 위크 — 복권 로그라이크(웹)",
@@ -32,17 +43,6 @@
       "language": "TypeScript",
       "pushed_at": "2026-11-22T10:08:12Z",
       "thumb": "thumbs/nihongo.webp",
-      "thumb_at": "2026-11-27T08:39:55+00:00"
-    },
-    {
-      "name": "market-radar",
-      "title": "마켓 레이더",
-      "description": "주간 마켓 레이더 — 국내/해외 주식시장 주간 정리 (자동 발행)",
-      "url": "https://doridori0150.github.io/market-radar/",
-      "repo": "https://github.com/doridori0150/market-radar",
-      "language": "HTML",
-      "pushed_at": "2026-11-21T10:33:31Z",
-      "thumb": "thumbs/market-radar.webp",
       "thumb_at": "2026-11-27T08:39:55+00:00"
     },
     {
@@ -79,5 +79,5 @@
       "thumb_at": "2026-11-27T08:39:55+00:00"
     }
   ],
-  "updated_at": "2026-11-27T08:39:55+00:00"
+  "updated_at": "2026-11-28T07:53:52+00:00"
 }
